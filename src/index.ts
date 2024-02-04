@@ -1,10 +1,11 @@
-import express, { Request } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import * as dotenv from 'dotenv';
-import { MyRequest } from '../types';
-import { createNewUser, signin } from './handlers/user';
-import router from './routes';
+
+import router from './router';
 import { protect } from './modules/auth';
+import { createNewUser, signin } from './handlers/user';
+import { MyRequest } from '../types';
 
 dotenv.config();
 

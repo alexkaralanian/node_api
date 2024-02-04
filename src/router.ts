@@ -1,22 +1,40 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
+import { body } from 'express-validator';
+import {
+  handleInputErrors,
+  validateUpdateId,
+  validateUpdate,
+  validateProduct,
+  validateProductId,
+} from './modules/middleware';
 
 const router = Router();
 
 /* Product */
-
 router.get('/product', (req, res) => {
   res.json({ message: 'product' });
 });
 router.get('/product/:id', (req, res) => {});
-router.post('/product', (req, res) => {});
-router.put('/product/:id', (req, res) => {});
+router.put(
+  '/product/:id',
+  validateProductId,
+  (req: Request, res: Response) => {}
+);
+router.post('/product', validateProduct, (req: Request, res: Response) => {});
 router.delete('/product/:id', (req, res) => {});
 
 /* Update */
 router.get('/update', (req, res) => {});
 router.get('/update/:id', (req, res) => {});
-router.post('/update', (req, res) => {});
-router.put('/update/:id', (req, res) => {});
+router.put(
+  '/update/:id',
+  validateUpdateId,
+
+  (req: Request, res: Response) => {
+    res.json('UPDATE ID');
+  }
+);
+router.post('/update', validateUpdate, (req: Request, res: Response) => {});
 router.delete('/update/:id', (req, res) => {});
 
 /* UpdatePoint */
